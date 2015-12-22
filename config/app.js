@@ -1,7 +1,7 @@
 var config = {
-    host: 'http://52.29.133.28/',
+    host: 'http://52.30.78.86',
     db: {
-        host: '52.29.133.28',
+        host: 'localhost',
         database: 'UBet',
         user: 'root',
         password: 'emilbach'

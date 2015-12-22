@@ -19,9 +19,9 @@ router.get('/', function(req, res, next) {
 
 router.get('/:id', function(req, res, next) {
 
-    var group = req.params.id;
+    var id = req.params.id;
 
-    var query = db.query("SELECT * FROM teams WHERE `group` = " + group);
+    var query = db.query("SELECT * FROM teams WHERE id = " + id);
 
     query.then(
         function(teams) {
@@ -34,7 +34,7 @@ router.get('/:id', function(req, res, next) {
 
 });
 
-router.post('/', function(req, res, next) {
+/*router.post('/', function(req, res, next) {
 
     var name = req.body.name;
     var group = req.body.group;
@@ -50,7 +50,7 @@ router.post('/', function(req, res, next) {
         }
     );
 
-});
+});*/
 
 router.delete('/', function(req, res, next) {
 
