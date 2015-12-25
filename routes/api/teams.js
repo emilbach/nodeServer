@@ -8,7 +8,7 @@ var db = require('../../helpers/db.js');
 /* GET users listing. */
 router.get('/', function(req, res, next) {
 
-    var query = db.query('SELECT name FROM teams');
+    var query = db.query('SELECT * FROM teams');
     query.then(
         function(teams) {
             res.send(teams);
@@ -21,7 +21,7 @@ router.get('/:id', function(req, res, next) {
 
     var id = req.params.id;
 
-    var query = db.query("SELECT name FROM teams WHERE id = " + id);
+    var query = db.query("SELECT * FROM teams WHERE id = " + id);
 
     query.then(
         function(teams) {
