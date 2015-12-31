@@ -8,7 +8,7 @@ router.post('/', function(req, res, next) {
     var id = req.body.id;
     var type = req.body.type;
 
-    var query = db.query("INSERT INTO ticket (id, `type`) VALUES(?, ?)", [id, type]);
+    var query = db.query("INSERT INTO ticket (id, type) VALUES(?, ?)", [id, type]);
 
     query.then(
         function(ticket) {
