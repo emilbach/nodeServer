@@ -6,9 +6,9 @@ var db = require('../../helpers/db.js');
 router.post('/', function(req, res, next) {
 
     var id = req.body.id;
-    var type = req.body.type;
+    var email = req.body.email;
 
-    var query = db.query("INSERT INTO ticket (id, type) VALUES(?, ?)", [id, type]);
+    var query = db.query("INSERT INTO users (id, email) VALUES(?, ?)", [id, email]);
 
     query.then(
         function(ticket) {
@@ -16,16 +16,6 @@ router.post('/', function(req, res, next) {
         },
         function (error) {
             console.log(error);
-        }
-    );
-
-});
-router.get('/', function(req, res, next) {
-
-    var query = db.query('SELECT m.match_id, m.home, m.away FROM matches m, ticket t WHERE m.match_id = t.id');
-    query.then(
-        function(matches) {
-            res.send(matches);
         }
     );
 
