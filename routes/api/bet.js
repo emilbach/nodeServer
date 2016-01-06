@@ -22,10 +22,13 @@ router.post('/', function(req, res, next) {
 });
 router.get('/', function(req, res, next) {
 
-    var query = db.query('SELECT m.match_id, m.home, m.away FROM matches m, ticket t WHERE m.match_id = t.id');
+    var query = db.query('SELECT m.match_id, m.home, m.away, t.type, m.one, m.X, m.two FROM matches m, ticket t WHERE m.match_id = t.id ORDER BY t.id');
     query.then(
         function(matches) {
             res.send(matches);
+        },
+        function (error) {
+            console.log(error);
         }
     );
 
