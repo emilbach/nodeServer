@@ -20,4 +20,15 @@ router.post('/', function(req, res, next) {
     );
 
 });
+
+router.get('/', function(req, res, next) {
+
+    var query = db.query('SELECT id FROM users');
+    query.then(
+        function(users) {
+            res.send(users);
+        }
+    );
+
+});
 module.exports = router;
