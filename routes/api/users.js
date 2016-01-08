@@ -5,10 +5,10 @@ var db = require('../../helpers/db.js');
 
 router.post('/', function(req, res, next) {
 
-    var id = req.body.id;
+    var uid = req.body.uid;
     var email = req.body.email;
 
-    var query = db.query("INSERT INTO users (id, email) VALUES(?, ?)", [id, email]);
+    var query = db.query("INSERT INTO users (uid, email) VALUES(?, ?)", [uid, email]);
 
     query.then(
         function(ticket) {
@@ -23,7 +23,7 @@ router.post('/', function(req, res, next) {
 
 router.get('/', function(req, res, next) {
 
-    var query = db.query('SELECT id FROM users');
+    var query = db.query('SELECT uid FROM users');
     query.then(
         function(users) {
             res.send(users);
