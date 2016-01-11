@@ -6,9 +6,10 @@ var db = require('../../helpers/db.js');
 router.post('/', function(req, res, next) {
 
     var uid = req.body.uid;
+    var fbname = req.body.fbname;
     var email = req.body.email;
 
-    var query = db.query("INSERT INTO users (uid, email) VALUES(?, ?)", [uid, email]);
+    var query = db.query("INSERT INTO users (uid, fbname, email) VALUES(?, ?, ?)", [uid, fbname, email]);
 
     query.then(
         function(ticket) {
