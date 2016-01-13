@@ -24,7 +24,7 @@ router.post('/', function(req, res, next) {
 
 router.get('/', function(req, res, next) {
 
-    var query = db.query('SELECT uid FROM users');
+    var query = db.query('SELECT email FROM users');
     query.then(
         function(users) {
             res.send(users);
