@@ -7,7 +7,7 @@ router.post('/', function(req, res, next) {
 
     var id = req.body.id;
     var type = req.body.type;
-    var email = req.body.email
+    var email = req.body.email;
 
     var query = db.query("INSERT INTO ticket (id, type, email) VALUES(?, ?, ?)", [id, type, email]);
 
@@ -23,7 +23,7 @@ router.post('/', function(req, res, next) {
 });
 router.get('/', function(req, res, next) {
 
-    var query = db.query("SELECT DISTINCT u.fbname,t.email FROM ticket t, users u WHERE u.email = t.email");
+    var query = db.query("SELECT DISTINCT u.fbname,t.email,m.match_id,m.home,m.away,t.type,m.one,m.X,m.two FROM matches m, ticket t, users u WHERE m.match_id=t.id AND u.email = t.email ORDER BY t.id");
     query.then(
         function(ticket) {
             res.send(ticket);
@@ -35,14 +35,30 @@ router.get('/', function(req, res, next) {
 
 });
 router.get('/:email', function(req, res, next) {
-    var uid = req.params.uid;
+    var email = req.params.email;
 
-    var query = db.query("SELECT u.fbname, m.match_id, m.home, m.away, t.type, m.one, m.X, m.two FROM matches m, ticket t, users u WHERE m.match_id=t.id AND u.email="+email+" ORDER BY t.id");
+    var query = db.query("SELECT u.fbname, m.match_id, m.home, m.away, t.type, m.one, m.X, m.two FROM matches m, ticket t, users u WHERE m.match_id=t.id AND u.email='"+email+"' ORDER BY t.id");
     query.then(
         function(ticket) {
             res.send(ticket);
         },
         function (error) {
+            console.log(error);
+        }
+    );
+
+});
+router.delete('/', function(req, res, next) {
+
+    var id = req.query.id;
+
+    var query = db.query("DELETE FROM ticket WHERE id = " + id);
+
+    query.then(
+        function(ticket) {
+            res.send('Success');
+        },
+        function (ticket) {
             console.log(error);
         }
     );
