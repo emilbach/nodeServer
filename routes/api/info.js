@@ -23,23 +23,9 @@ router.post('/', function(req, res, next) {
 });
 router.get('/', function(req, res, next) {
 
-    var query = db.query("SELECT DISTINCT u.fbname,t.email,m.match_id,m.home,m.away,t.type,m.one,m.X,m.two FROM matches m, ticket t, users u WHERE m.match_id=t.id AND u.email = t.email ORDER BY t.id");
+    var query = db.query("SELECT * FROM information ORDER BY id");
     query.then(
-        function(ticket) {
-            res.send(ticket);
-        },
-        function (error) {
-            console.log(error);
-        }
-    );
-
-});
-router.get('/:email', function(req, res, next) {
-    var email = req.params.email;
-
-    var query = db.query("SELECT u.fbname, m.match_id, m.home, m.away, t.type, m.one, m.X, m.two FROM matches m, ticket t, users u WHERE m.match_id=t.id AND u.email='"+email+"' ORDER BY t.id");
-    query.then(
-        function(ticket) {
+        function(information) {
             res.send(ticket);
         },
         function (error) {

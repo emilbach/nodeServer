@@ -3,11 +3,7 @@ var path = require('path');
 var bodyParser = require('body-parser');
 
 // here we define the variables that will contain the actual code of the route
-var stats = require('./routes/api/stats');
-var matches = require('./routes/api/matches');
-var news = require('./routes/api/news');
-var bet = require('./routes/api/bet');
-var users = require('./routes/api/users');
+var info = require('./routes/api/info');
 
 var app = express();
 
@@ -22,11 +18,7 @@ app.use(bodyParser.json());
 
 
 // here we define all routes of our API
-app.use('/api/stats', stats);
-app.use('/api/matches', matches);
-app.use('/api/news', news);
-app.use('/api/bet', bet);
-app.use('/api/users', users);
+app.use('/api/info', info);
 console.log('The server is running!');
 
 module.exports = app;
